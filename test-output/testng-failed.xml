@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="automationCode.textBoxClass">
+      <class name="automationCode.elementsClass">
         <methods>
           <include name="afterTest"/>
-          <include name="enterFieldValues"/>
+          <include name="bookStoreApplication"/>
           <include name="beforeTest"/>
         </methods>
-      </class> <!-- automationCode.textBoxClass -->
+      </class> <!-- automationCode.elementsClass -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
