@@ -4,10 +4,12 @@
 	<listeners>
 		
 	</listeners>
-	<test thread-count="5" name="Test">
+	<test name="Test">
 		<classes>
-			<class name="automationCode.elementsClass"></class>
-			
+			<class name="automationCode.bookStoreApplication"/>
+			<class name="automationCode.elementsClass"/>
+			<class name="automationCode.formClass"/>
+			<class name="automationCode.widgetClass"/>
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

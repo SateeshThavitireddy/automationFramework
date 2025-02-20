@@ -3,13 +3,23 @@
 <suite name="Failed suite [automationFramework]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="automationCode.textBoxClass">
+      <class name="automationCode.bookStoreApplication">
         <methods>
           <include name="afterTest"/>
-          <include name="enterFieldValues"/>
+          <include name="bookStoreApplication"/>
           <include name="beforeTest"/>
         </methods>
-      </class> <!-- automationCode.textBoxClass -->
+      </class> <!-- automationCode.bookStoreApplication -->
+      <class name="automationCode.elementsClass">
+        <methods>
+          <include name="selectRadioButton"/>
+          <include name="afterTest"/>
+          <include name="bookStoreApplication"/>
+          <include name="verifyRadioValue"/>
+          <include name="beforeTest"/>
+          <include name="selectCheckBoxs"/>
+        </methods>
+      </class> <!-- automationCode.elementsClass -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [automationFramework] -->

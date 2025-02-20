@@ -1,5 +1,10 @@
 package automationCode;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import automationElements.checkBoxElement;
@@ -8,15 +13,7 @@ import automationElements.radioElement;
 import automationElements.textBoxElement;
 import automationElements.webTables;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
-import org.testng.Reporter;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.AfterTest;
-
-public class elementsClass {
-
+public class bookStoreApplication {
 	WebDriver driver = new ChromeDriver();
 	commonMethods common = new commonMethods(driver);
 	textBoxElement textBox = new textBoxElement(driver);
@@ -25,112 +22,23 @@ public class elementsClass {
 	webTables webTable = new webTables(driver);
 	automationElements.bookStoreApplication bookStore = new automationElements.bookStoreApplication(driver);
 	String title;
-
 	@BeforeTest
 	public void beforeTest() {
 
-		driver.get("https://demoqa.com/text-box");
+		driver.get("https://demoqa.com/login");
 		driver.manage().window().maximize();
 	}
-
-	@Test(priority = 0)
-	public void verifyTitleValue() {
-		Reporter.log("Entered the verifyTitleValue Method");
-		common.waits(4000);
-		common.selectElement("Text_Box");
-		title = common.getTitle("Text_Box");
-		System.out.println("The is title value : " + title);
-		Assert.assertEquals("Text Box", title, "The title should be Text Box");
-		Reporter.log("Exited the verifyTitleValue method");
-	}
-
-	@Test(priority = 1)
-	public void enterFieldValues() {
-		Reporter.log("Entered the enterFieldValues Method");
-		textBox.enterFieldValue("FullName", "XYZ");
-		textBox.enterFieldValue("Email", "abc@gmail.com");
-		textBox.enterFieldValue("Current_Address", "XYZ Apartment");
-		textBox.enterFieldValue("Permanent_Address", "XYZ Apartment");
-		textBox.clickButton("submit");
-		Reporter.log("Exited the enterFieldValues Method");
-	}
-
-	@Test(priority = 2)
-	public void verifyCheckBoxTitle() {
-		Reporter.log("Entered the verifyCheckBoxTitle Method");
-		common.waits(4000);
-		common.selectElement("Check_Box");
-		title = common.getTitle("Check_Box");
-		System.out.println("The is title value : " + title);
-		Assert.assertEquals("Check Box", title, "The title should be Check Box");
-
-		Reporter.log("Exited the verifyCheckBoxTitle Method");
-	}
-	@Test(priority = 3)
-	public void selectCheckBoxs() {
-		Reporter.log("Entered the selectCheckBoxs Method");
-		common.switchToIframe("Check Box");
-		checkbox.clickArrowByJS("Home");
-		Reporter.log("Exited the selectCheckBoxs Method");
-	}
-
-	@Test(priority = 4)
-	public void verifyRadioValue() {
-		Reporter.log("Entered the verifyRadioValue Method");
-		common.selectElement("Radio_Button");
-		title = common.getTitle("Radio_Button");
-		System.out.println("The is title value : " + title);
-		Assert.assertEquals("Radio Button", title, "The title should be Radio Button");
-		Reporter.log("Exited the verifyRadioValue method");
-	}
-
-	@Test(priority = 5)
-	public void selectRadioButton() {
-
-		boolean isRadioSelected;
-		boolean isRadioDisplayed;
-		boolean isRadioEnabled;
-		Reporter.log("Entered the selectRadioButton Method");
-		radio.selectRadioButton("yes");
-		isRadioSelected = radio.verifyRadioSelected("yes");
-		Assert.assertEquals(true, isRadioSelected, "The value should be true");
-
-		// isRadioDisplayed = radio.verifyRadioDisplayed("yes");
-		// Assert.assertEquals(true, isRadioDisplayed,"The value should be true");
-
-		isRadioEnabled = radio.verifyRadioEnabled("yes");
-		Assert.assertEquals(true, isRadioEnabled, "The value should be true");
-
-		radio.selectRadioButton("impressiveRadio");
-		isRadioSelected = radio.verifyRadioSelected("impressiveRadio");
-		Assert.assertEquals(true, isRadioSelected, "The value should be true");
-
-		// isRadioDisplayed = radio.verifyRadioDisplayed("impressiveRadio");
-		// Assert.assertEquals(true, isRadioDisplayed,"The value should be true");
-
-		isRadioEnabled = radio.verifyRadioEnabled("impressiveRadio");
-		Assert.assertEquals(true, isRadioEnabled, "The value should be true");
-
-		// isRadioDisplayed = radio.verifyRadioDisplayed("no");
-		// Assert.assertEquals(true, isRadioDisplayed,"The value should be true");
-
-		isRadioEnabled = radio.verifyRadioEnabled("no");
-		Assert.assertEquals(false, isRadioEnabled, "The value should be true");
-
-		Reporter.log("Exited the selectRadioButton method");
-	}
-
-	@Test(priority = 7)
+	
+	@Test
 	public void bookStoreApplication() throws InterruptedException {
 
+		
 		String alertMessage;
 		String userName;
 		String dailogMessage;
 		boolean buttonVisible;
 		boolean buttonEnabled;
 		common.waits(4000);
-	//	common.selectWidgetELement("Elements");
-		common.selectWidgetELement("Book Store Application");
 		bookStore.clickButtonByXpath("Login");
 		title = bookStore.getTitle();
 		System.out.println("The is title value : " + title);
@@ -253,20 +161,9 @@ public class elementsClass {
 		Assert.assertEquals("User Deleted.", alertMessage, "The title should be User Deleted.");
 		common.acceptAlert();
 	}
-//	@Test(priority = 6)
-//	public void verifyWebTables() {
-//		common.waits(4000);
-//		common.selectElement("Web_Tables");
-//
-//		webTable.getCellValue("Email", "cierra@example.com", "Age");
-//		title = common.getTitle("Web_Tables");
-//		System.out.println("The is title value : " + title);
-//		Assert.assertEquals("Web Tables", title, "The title should be Web Tables");
-//	}
 	@AfterTest
 	public void afterTest() {
 
 		driver.quit();
 	}
-
 }

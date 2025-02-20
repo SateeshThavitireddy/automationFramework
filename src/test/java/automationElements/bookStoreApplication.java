@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 public class bookStoreApplication {
 	private RespositoryParser parser;
@@ -123,4 +124,14 @@ public void dismmDialog(String buttonName) {
 	WebElement element = driver.findElement(By.id(id));
 	element.click();
 	}
+
+@SuppressWarnings("deprecation")
+public String getToolTipText(String tooltip) {
+	String toolTipText;
+	WebElement element = driver.findElement(By.id(parser.getbjectLocator(tooltip)));
+	Actions action = new Actions(driver);
+	action.moveToElement(element).perform();
+	toolTipText = element.getAttribute("title");
+	return toolTipText;
+}
 }
